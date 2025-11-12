@@ -439,7 +439,7 @@
     `;
     panel.innerHTML = `
       <div class="panel-header">
-        <span class="panel-title">ElementEditor v1.1.0</span>
+        <span class="panel-title">ElementEditor v1.1.1</span>
         <div class="panel-controls">
           <button id="minimize-btn" class="primary-btn control-btn">−</button>
       <button id="close-btn" class="primary-btn control-btn">×</button>
@@ -979,8 +979,44 @@
       border: 1px solid #e2e8f0;
       border-radius: 8px;
       font-size: 14px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #000000;
+      background-color: #ffffff;
+      transition: all 0.2s ease;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
       box-sizing: border-box;
     `;
+    
+    // 添加focus状态样式
+    searchInput.addEventListener('focus', function() {
+      this.style.outline = 'none';
+      this.style.borderColor = '#3b82f6';
+      this.style.backgroundColor = '#ffffff';
+      this.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.1), inset 0 1px 2px rgba(0, 0, 0, 0.05)';
+      this.style.transform = 'translateY(-1px)';
+      this.style.color = '#000000';
+    });
+    
+    searchInput.addEventListener('blur', function() {
+      this.style.borderColor = '#e2e8f0';
+      this.style.backgroundColor = '#ffffff';
+      this.style.boxShadow = 'inset 0 1px 2px rgba(0, 0, 0, 0.05)';
+      this.style.transform = 'translateY(0)';
+    });
+    
+    searchInput.addEventListener('mouseover', function() {
+      if (!this.matches(':focus')) {
+        this.style.borderColor = '#cbd5e1';
+        this.style.backgroundColor = '#f8fafc';
+      }
+    });
+    
+    searchInput.addEventListener('mouseout', function() {
+      if (!this.matches(':focus')) {
+        this.style.borderColor = '#e2e8f0';
+        this.style.backgroundColor = '#ffffff';
+      }
+    });
     
     searchContainer.appendChild(searchInput);
     
